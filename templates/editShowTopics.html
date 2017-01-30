@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    {% include "header.html" %}
+  <body>
+    {% include "topbar.html" %}
+    
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Edit topic: {{topic.title}}</h1>
+      </div>
+    </div>
+    <div class="row medium-8 large-7 columns">
+      <div class="blog-post">
+        <div class="panel callout">
+          <img class="thumbnail" src="http://lorempixel.com/g/850/350/nature">
+          <p>{{topic.content}}</p>
+        </div>
+      </div>
+    </div>    
+    <!-- We can now combine rows and columns when there's only one column in that row -->
+    <div class="row medium-8 large-7 columns">
+      <!-- Post form to collect data for blog entry -->
+      <form action="#" method ="post">
+        <div class="row">
+          <div class="large-12 columns">
+            <label for="name">New title:</label>
+            <input type ="text" maxlength="100" name="title" placeholder="New title">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <label for="description">New summary:
+              <textarea maxlength="250" rows="3" name="summary" placeholder="Short summary"></textarea>  
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <label for="description">New content:
+              <textarea maxlength="1000" rows="12" name="content" placeholder="Description of category"></textarea>  
+            </label>
+          </div>
+        </div>
+
+<!--         <div class="row">
+          <div class="large-12 columns">
+            <label for="description">Picture:
+              <textarea maxlength="250" rows="3" name="description" placeholder="Description of category"></textarea>  
+            </label>
+          </div>
+        </div> -->
+
+        <div class="row">
+          <div class="large-12 columns">
+            <button type="submit" class="button" id="submit" type="submit">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% include "script.html" %}
+  </body>
+</html>
+
+
+

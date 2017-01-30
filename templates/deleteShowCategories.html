@@ -1,0 +1,45 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    {% include "header.html" %}
+  <body>
+    {% include "topbar.html" %}
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Delete Category: {{chosen_category.name}}</h1>
+      </div>
+    </div>
+    
+    <div class="row medium-8 large-7 columns">
+      <!-- Post form to collect data for blog entry -->
+            <div class="blog-post">
+        <div class="panel callout">
+          <h4>Name: {{chosen_category.name}}</h4>
+          <p>Description: {{chosen_category.description}}</p>
+        </div>
+<!--         <div class="callout">
+          <ul class="menu simple">
+            <li><a href="#">Author: Mike Mikers</a></li>
+            <li><a href="#">Comments: 3</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- We can now combine rows and columns when there's only one column in that row -->
+    <div class="row medium-8 large-7 columns">
+      <!-- Post form to collect data for blog entry -->
+      <form action="#" method ="post">
+        <div class="row">
+          <div class="large-12 columns">
+            <button type="delete" class="button" id="submit" type="submit">Delete</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% include "script.html" %}
+  </body>
+</html>
+
+
+

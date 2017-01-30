@@ -1,0 +1,36 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    {% include "header.html" %}
+  <body>
+    {% include "topbar.html" %}
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Delete topic: {{topic.title}}</h1>
+      </div>
+    </div>
+    <div class="row medium-8 large-7 columns">
+      <div class="blog-post">
+        <div class="panel callout">
+          <img class="thumbnail" src="http://lorempixel.com/g/850/350/nature">
+          <p>{{topic.content}}</p>
+        </div>
+      </div>
+    </div>    
+    <!-- We can now combine rows and columns when there's only one column in that row -->
+    <div class="row medium-8 large-7 columns">
+      <!-- Post form to collect data for blog entry -->
+      <form action="#" method ="post">
+        <div class="row">
+          <div class="large-12 columns">
+            <button type="delete" class="button" id="submit" type="submit">Delete</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% include "script.html" %}
+  </body>
+</html>
+
+
+

@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    {% include "header.html" %}
+  <body>
+    {% 'username' not in login_session %}
+      {% include "topbar1.html" %}
+    {% else %}
+      {% include "topbar.html" %}
+    {% endif %}
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Category: {{chosen_category.name}}</h1>
+      </div>
+    </div>
+    
+    <div class="row" id="content">
+      <div class="medium-8 columns">
+      <!-- Post in Flush message         -->
+        <div data-alert class="alert-box success radius">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                  <h5> {{ message }} </h5>
+                {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+      <!-- end of flush message -->
+        <div class="blog-post">
+          {% for topic in topics %}
+            <h3><a href="{{url_for('Story', category_id=chosen_category.id, story_id=topic.id)}}">{{topic.title}}</a> <small>{{topic.created_at}}</small></h3>
+            <img class="thumbnail" src="htmltp://lorempixel.com/g/850/350/nature">
+            <p>{{topic.summary}}</p>
+          {% endfor %}
+          <div class="callout">
+            <a href="{{url_for('NewStory', category_id = chosen_category.id)}}"><i class="fi-page-new small"></i> Add new topic</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="medium-3 columns" data-sticky-container>
+        <div class="sticky" data-sticky data-anchor="content">
+          <h4>Categories</h4>
+          <ul>
+            {% for category in categories %}
+              <li>
+                <a href="{{url_for('Categories', category_id = category.id)}}">{{category.name}}</a>
+              </li>
+                {% if category.user_id == user_id %}
+                <ul class="no-bullet">
+                  <li>
+                    <a href="{{url_for('editShowCategories', category_id = category.id)}}"><i class="fi-page-edit small"></i> Edit</a>
+                    <a href="{{url_for('deleteShowCategories', category_id = category.id)}}"><i class="fi-page-delete small"></i> Delete</a>
+                  </li>
+                </ul>
+                {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% include "script.html" %}
+  </body>
+</html>
+
+
+

@@ -1,0 +1,8 @@
+1. Install mysql server https://help.ubuntu.com/lts/serverguide/mysql.html
+2. Install pip http://www.saltycrane.com/blog/2010/02/how-install-pip-ubuntu/
+3. install sqlalchemy
+4. install Flask http://flask.pocoo.org/docs/0.10/installation/
+5. Install mysql pip install mysql-python
+6. Create database in mysql (describe steps)
+7. sudo pip install --upgrade google-api-python-client
+

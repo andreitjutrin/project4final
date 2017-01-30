@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    {% include "header.html" %}
+  <body>
+    {% include "topbar.html" %}
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Edit Category: {{chosen_category.name}}</h1>
+      </div>
+    </div>
+    
+    <div class="row medium-8 large-7 columns">
+      <!-- Post form to collect data for blog entry -->
+            <div class="blog-post">
+        <div class="panel callout">
+          <h4>Name: {{chosen_category.name}}</h4>
+          <p>Description: {{chosen_category.description}}</p>
+        </div>
+<!--         <div class="callout">
+          <ul class="menu simple">
+            <li><a href="#">Author: Mike Mikers</a></li>
+            <li><a href="#">Comments: 3</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- We can now combine rows and columns when there's only one column in that row -->
+    <div class="row medium-8 large-7 columns">
+      <!-- Post form to collect data for blog entry -->
+      <form action="#" method ="post">
+        <div class="row">
+          <div class="large-12 columns">
+            <label for="name">New name:</label>
+            <input type ="text" maxlength="100" name="name" placeholder="New category">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <label for="description">New description:
+              <textarea maxlength="250" rows="3" name="description" placeholder="Description of category"></textarea>  
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <button type="submit" class="button" id="submit" type="submit">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {% include "script.html" %}
+  </body>
+</html>
+
+
+

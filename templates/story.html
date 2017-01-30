@@ -1,0 +1,34 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    {% include "header.html" %}
+    <body>
+      {% include "topbar.html" %}
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>{{topic.title}}</h1>
+        <h2 class="subheader">Category: {{chosen_category.name}}</h2>
+      </div>
+    </div>
+    
+    <!-- We can now combine rows and columns when there's only one column in that row -->
+    <div class="row medium-8 large-7 columns">
+      <div class="blog-post">
+        <img class="thumbnail" src="http://lorempixel.com/g/850/350/nature">
+        <p>{{topic.content}}</p>
+        <div class="callout">
+          <ul class="no-bullet">
+            <li>
+              <a href="{{url_for('editStory', category_id = chosen_category.id, story_id = topic.id)}}"><i class="fi-page-edit small"></i> Edit</a>
+              <a href="{{url_for('deleteStory', category_id = chosen_category.id, story_id = topic.id)}}"><i class="fi-page-delete small"></i> Delete</a>
+            </li>
+          </ul>          
+        </div>
+      </div>
+    </div>
+    {% include "script.html" %}
+  </body>
+</html>
+
+
+

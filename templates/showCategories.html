@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
     {% include "header.html" %}
   <body>
-    {% 'username' not in login_session %}
+    {% if user_id > 0 %}
       {% include "topbar1.html" %}
     {% else %}
       {% include "topbar.html" %}

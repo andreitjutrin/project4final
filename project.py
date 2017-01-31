@@ -211,9 +211,11 @@ def gdisconnect():
 def showCategories():
     topics = session.query(Topic).order_by(Topic.created_at).all()
     categories = session.query(Category).all()
-    user_id = ""
+    user_id = "0"
     if "email" in login_session:
-		user_id = getUserID(login_session['email'])
+        user_id = getUserID(login_session['email'])
+        print "user id inside IF statement ......" , user_id
+    print "USER ID outside of if statement...." , user_id
     return render_template('showCategories.html', topics=topics, categories=categories, user_id=user_id)
 # Category: new ##############################################
 #

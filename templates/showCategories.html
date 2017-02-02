@@ -2,11 +2,7 @@
 <html class="no-js" lang="en">
     {% include "header.html" %}
   <body>
-    {% if user_id > 0 %}
-      {% include "topbar1.html" %}
-    {% else %}
-      {% include "topbar.html" %}
-    {% endif %}
+    {% include "topbar.html" %}
 
     <div class="callout large primary">
       <div class="row column text-center">
@@ -28,18 +24,29 @@
           {% endwith %}
         </div>
 <!-- end of flush message -->
+        <!-- Cycling through topics -->
         <div class="blog-post">
           {% for topic in topics %}
             <h3><a href="{{url_for('Story', category_id=topic.category_id, story_id=topic.id)}}">{{topic.title}}</a> <small>3/6/2015</small></h3>
+            <!-- I used image placeholder for this excercise -->
             <img class="thumbnail" src="http://placehold.it/850x350">
             <p>{{topic.summary}}</p>
           {% endfor %}
         </div>
+        <!-- end cycling through topics -->
 
       </div>
+      <!-- Cycling through categories  -->
       <div class="medium-3 columns" data-sticky-container>
         <div class="sticky" data-sticky data-anchor="content">
           <h4>Categories </h4>
+          <div class="callout">
+            <ul>
+              <li>
+                <a href="{{url_for('newShowCategories')}}">Add new category</a>
+              </li>
+            </ul>
+          </div>
           <ul>
             {% for category in categories %}
               <li>
@@ -57,6 +64,7 @@
           </ul>
         </div>
       </div>
+      <!-- End cycling through categories -->
     </div>
     {% include "script.html" %}
   </body>

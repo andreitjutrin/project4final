@@ -12,6 +12,9 @@ import string
 
 Base = declarative_base()
 
+#
+# Three tables below: User, Category and Topic ########################
+#
 class User(Base):
     __tablename__ = 'user'
 
@@ -29,6 +32,9 @@ class Category(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User) 
 
+    #
+    # To produce json output I use property ########################
+    #
     @property
     def serialize(self):
        """Return object data in easily serializeable format"""

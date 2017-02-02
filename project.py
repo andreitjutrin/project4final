@@ -173,9 +173,9 @@ def gconnect():
     print "done!"
     return output
 
-    # DISCONNECT - Revoke a current user's token and reset their login_session
-
-
+#
+# DISCONNECT - Revoke a current user's token and reset their login_session
+#
 @app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session['access_token']
@@ -200,23 +200,31 @@ def gdisconnect():
     	del login_session['picture']
         response = make_response(json.dumps('Successfully disconnected.'), 200)
         response.headers['Content-Type'] = 'application/json'
+        return redirect(url_for('showCategories'))
         return response
     else:
         response = make_response(json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
+        return redirect(url_for('showCategories'))
         return response
-
+########################################################################
+# BEGINNING OF THE WEB PAGES############################################
+########################################################################
+#
+# Main page ##################################################
+#
 @app.route('/')
 @app.route('/categories/')
 def showCategories():
     topics = session.query(Topic).order_by(Topic.created_at).all()
     categories = session.query(Category).all()
-    user_id = "0"
+    # creating vafiable user_id so I can pass it to html when disconnected
+    user_id = 0
+    # if user is connected I will pass user_id to the html
     if "email" in login_session:
         user_id = getUserID(login_session['email'])
-        print "user id inside IF statement ......" , user_id
-    print "USER ID outside of if statement...." , user_id
     return render_template('showCategories.html', topics=topics, categories=categories, user_id=user_id)
+#
 # Category: new ##############################################
 #
 @app.route('/categories/new', methods=['GET','POST'])
@@ -255,8 +263,6 @@ def editShowCategories(category_id):
 			return render_template('editShowCategories.html', chosen_category=chosen_category)
 	else:
 		return redirect('/login')
-
-
 #
 # Category: delete ##############################################
 #
@@ -276,7 +282,6 @@ def deleteShowCategories(category_id):
 			return render_template('deleteShowCategories.html', chosen_category=chosen_category)
 	else:
 		return redirect('/login')
-
 #
 # A list of articles in specific category ##############################################
 #
@@ -285,7 +290,7 @@ def Categories(category_id):
 	topics = session.query(Topic).filter_by(category_id=category_id).order_by(Topic.created_at).all()
 	categories = session.query(Category).filter(Category.id != category_id).all()
 	chosen_category = session.query(Category).filter_by(id=category_id).one()
-	user_id = ""
+	user_id = 0
 	if "email" in login_session:
 		user_id = getUserID(login_session['email'])
 	return render_template('category.html', topics=topics, categories=categories, chosen_category=chosen_category, user_id=user_id)
@@ -294,15 +299,16 @@ def Categories(category_id):
 #
 @app.route('/categories/<int:category_id>/list/<int:story_id>/')
 def Story(category_id, story_id):
-	topic = session.query(Topic).filter_by(id=story_id).one()
-	chosen_category = session.query(Category).filter_by(id=category_id).one()
-	if "email" in login_session:
-		user_id = getUserID(login_session['email'])
-		if user_id == story_id:
-			return render_template('story.html', topic=topic, chosen_category=chosen_category)
-		return render_template('storyNoEdit.html', topic=topic, chosen_category=chosen_category)
-	else:
-		return render_template('storyNoEdit.html', topic=topic, chosen_category=chosen_category)
+    topic = session.query(Topic).filter_by(id=story_id).one()
+    chosen_category = session.query(Category).filter_by(id=category_id).one()
+    if "email" in login_session:
+        user_id = getUserID(login_session['email'])
+        if user_id == story_id:
+            return render_template('story.html', topic=topic, chosen_category=chosen_category, user_id=user_id)
+        return render_template('storyNoEdit.html', topic=topic, chosen_category=chosen_category, user_id=user_id)
+    else:
+        user_id = 0
+        return render_template('storyNoEdit.html', topic=topic, chosen_category=chosen_category, user_id=user_id)
 #
 # Individual article: new ##############################################
 #
@@ -365,7 +371,9 @@ def deleteStory(category_id, story_id):
 			return render_template('deleteShowTopics.html', topic=topic, chosen_category=chosen_category)
 	else:
 		return redirect('/login')
-
+#
+# I chose different port from the lesson, the default port was occupied
+#
 if __name__ == '__main__':
   app.secret_key = 'some_secret'
   app.debug = True

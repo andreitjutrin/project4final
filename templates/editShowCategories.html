@@ -2,8 +2,7 @@
 <html class="no-js" lang="en">
     {% include "header.html" %}
   <body>
-    {% include "topbar.html" %}
-
+    <!-- display the category to be edited -->
     <div class="callout large primary">
       <div class="row column text-center">
         <h1>Edit Category: {{chosen_category.name}}</h1>
@@ -11,24 +10,17 @@
     </div>
     
     <div class="row medium-8 large-7 columns">
-      <!-- Post form to collect data for blog entry -->
-            <div class="blog-post">
+      <div class="blog-post">
         <div class="panel callout">
           <h4>Name: {{chosen_category.name}}</h4>
           <p>Description: {{chosen_category.description}}</p>
         </div>
-<!--         <div class="callout">
-          <ul class="menu simple">
-            <li><a href="#">Author: Mike Mikers</a></li>
-            <li><a href="#">Comments: 3</a></li>
-          </ul>
-        </div> -->
       </div>
     </div>
+    <!-- end display the category to be edited -->
 
-    <!-- We can now combine rows and columns when there's only one column in that row -->
     <div class="row medium-8 large-7 columns">
-      <!-- Post form to collect data for blog entry -->
+      <!-- Create form for edited data -->
       <form action="#" method ="post">
         <div class="row">
           <div class="large-12 columns">
@@ -51,6 +43,7 @@
           </div>
         </div>
       </form>
+      <!-- end create form for edited data -->
     </div>
     {% include "script.html" %}
   </body>

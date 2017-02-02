@@ -4,14 +4,14 @@
     <body>
       {% include "topbar.html" %}
 
+    <!-- pulling data from database on the chosen topic -->
     <div class="callout large primary">
       <div class="row column text-center">
         <h1>{{topic.title}}</h1>
         <h2 class="subheader">Category: {{chosen_category.name}}</h2>
       </div>
     </div>
-    
-    <!-- We can now combine rows and columns when there's only one column in that row -->
+
     <div class="row medium-8 large-7 columns">
       <div class="blog-post">
         <img class="thumbnail" src="http://lorempixel.com/g/850/350/nature">
@@ -26,6 +26,7 @@
         </div>
       </div>
     </div>
+    <!-- pulling data from database on the chosen topic -->
     {% include "script.html" %}
   </body>
 </html>

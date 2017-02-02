@@ -1,3 +1,11 @@
+About the project
+
+Author attempted to create a simple blog where users can create their own posts. There are categories and topics. Each topic is a part of category. Each category consists of a 0, 1 or multiple topics. A list of categories are always shown so user can choose another category if he wants; with exception on delte, edit or new pages.
+
+Author attempted to use foundation template for the first time.
+
+How to start the project
+
 1. Install mysql server https://help.ubuntu.com/lts/serverguide/mysql.html
 2. Install pip http://www.saltycrane.com/blog/2010/02/how-install-pip-ubuntu/
 3. install sqlalchemy
@@ -5,4 +13,7 @@
 5. Install mysql pip install mysql-python
 6. Create database in mysql (describe steps)
 7. sudo pip install --upgrade google-api-python-client
+8. install mysql => sudo apt-get install mysql-server
+9. create database manually inside mysql, only then you can run database_setup.py file to create tables
+10.run project.py
 
